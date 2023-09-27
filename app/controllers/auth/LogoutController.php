@@ -13,6 +13,6 @@ class LogoutController
     public function logout()
     {
         $this->user->logout();
-        header('Location: /login');
+        header('Location: /');
     }
 }

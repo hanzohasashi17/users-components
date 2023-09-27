@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'hanzohasashi17/components',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'e6ec318369ec64ae40e77fc1b8b4042a7e3efe29',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'hanzohasashi17/components' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'e6ec318369ec64ae40e77fc1b8b4042a7e3efe29',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -226,12 +226,12 @@ final class Auth extends UserManager {
 	 * @see confirmEmailAndSignIn
 	 */
 	public function register($email, $password, $username = null, callable $callback = null) {
-		$this->throttle([ 'enumerateUsers', $this->getIpAddress() ], 1, (60 * 60), 75);
-		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (60 * 60 * 12), 5, true);
+		$this->throttle([ 'enumerateUsers', $this->getIpAddress() ], 1, (1), 75);
+		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (1), 5, true);
 
 		$newUserId = $this->createUserInternal(false, $email, $password, $username, $callback);
 
-		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (60 * 60 * 12), 5, false);
+		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (1), 5, false);
 
 		return $newUserId;
 	}
@@ -292,7 +292,7 @@ final class Auth extends UserManager {
 	 * @throws AuthError if an internal problem occurred (do *not* catch)
 	 */
 	public function login($email, $password, $rememberDuration = null, callable $onBeforeSuccess = null) {
-		$this->throttle([ 'attemptToLogin', 'email', $email ], 500, (60 * 60 * 24), null, true);
+		$this->throttle([ 'attemptToLogin', 'email', $email ], 500, (1), null, true);
 
 		$this->authenticateUserInternal($password, $email, null, $rememberDuration, $onBeforeSuccess);
 	}

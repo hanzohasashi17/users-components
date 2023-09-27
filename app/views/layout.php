@@ -1,4 +1,3 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,6 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">GG</a>
                 <a class="nav-link" href="/login">Войти</a>
             </li>
             <li class="nav-item">

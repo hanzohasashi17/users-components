@@ -16,12 +16,12 @@ class UserController
 
     public function index()
     {
-        echo $this->templates->render('allUsers', ['users' => $this->user->getAllUsers(), 'isLogged' => $this->user->isLogged(), 'LoggedUserId' => $this->user->getLoggedUserId(), 'isAdmin' => $this->user->isAdmin()]);
+        echo $this->templates->render('allUsers', ['users' => $this->user->getAllUsers(), 'isLogged' => $this->user->isLogged(), 'loggedUserId' => $this->user->getLoggedUserId(), 'isAdmin' => $this->user->isAdmin()]);
     }
 
     public function showCreateUserPage()
     {
-        echo $this->templates->render('createUser');
+        echo $this->templates->render('createUser', ['isLogged' => $this->user->isLogged()]);
     }
 
     public function createUser()
@@ -37,7 +37,7 @@ class UserController
 
     public function showEditUserProfilePage($id)
     {
-        echo $this->templates->render('editUserProfile', ['id' => $id]);
+        echo $this->templates->render('editUserProfile', ['id' => $id, 'isLogged' => $this->user->isLogged()]);
     }
 
     public function editUserProfile()
@@ -55,7 +55,7 @@ class UserController
 
     public function showEditUserSecurityPage($id)
     {
-        echo $this->templates->render('editUserSecurity', ['id' => $id]);
+        echo $this->templates->render('editUserSecurity', ['id' => $id, 'isLogged' => $this->user->isLogged()]);
     }
 
     public function editUserSecurity()
@@ -73,7 +73,7 @@ class UserController
 
     public function showEditUserStatusPage($id)
     {
-        echo $this->templates->render('editUserStatus', ['id' => $id]);
+        echo $this->templates->render('editUserStatus', ['id' => $id, 'isLogged' => $this->user->isLogged()]);
     }
 
     public function editUserStatus()
@@ -88,7 +88,7 @@ class UserController
 
     public function showEditUserMediaPage($id)
     {
-        echo $this->templates->render('editUserMedia', ['id' => $id]);
+        echo $this->templates->render('editUserMedia', ['id' => $id, 'isLogged' => $this->user->isLogged()]);
     }
 
     public function editUserMedia()
@@ -102,8 +102,7 @@ class UserController
 
     public function deleteUser($id)
     {
-        if ($this->user->deleteUser($id)) {
-            header('Location: /');
-        }
+        $this->user->deleteUser($id);
+        header('Location: /');
     }
 }

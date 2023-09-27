@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!$isLogged) {
+    header('Location: /login');
+}
+?>
 <?php $this->layout('layout') ?>
 <main id="js-page-content" role="main" class="page-content mt-3">
         <div class="subheader">

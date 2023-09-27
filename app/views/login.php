@@ -33,9 +33,9 @@
             </a>
         </div>
         <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-            <div class="alert alert-success">
-                Регистрация успешна
-            </div>
+<!--            <div class="alert alert-success">-->
+<!--                Регистрация успешна-->
+<!--            </div>-->
             <form action="/login" method="post">
                 <div class="form-group">
                     <label class="form-label" for="username">Email</label>

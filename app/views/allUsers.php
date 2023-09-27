@@ -1,14 +1,12 @@
+<?php $this->layout('layout') ?>
 <?php
 session_start();
-//d(!$isLogged);
-//if (!$isLogged) {
-//    header('Location: /login');
-//} ?>
-<?php $this->layout('layout') ?>
+d($isLogged);
+if (!$isLogged) {
+    header('Location: /login');
+}
+?>
 <main id="js-page-content" role="main" class="page-content mt-3">
-<!--            <div class="alert alert-success">-->
-<!--                Профиль успешно обновлен.-->
-<!--            </div>-->
             <div class="subheader">
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -44,7 +42,7 @@ session_start();
                                     <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                         <?= $this->e($user['username']) ?>
                                     </a>
-                                    <?php if ($this->e($isAdmin) === 'admin' || (int)$this->e($LoggedUserId) === $user['id']): ?>
+                                    <?php if ($this->e($isAdmin) === 'admin' || (int)$this->e($loggedUserId) === $user['id']): ?>
                                         <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                             <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>

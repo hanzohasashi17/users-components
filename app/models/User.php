@@ -4,13 +4,13 @@ namespace App\models;
 
 use Aura\SqlQuery\QueryFactory;
 use Delight\Auth\Auth;
+use Delight\Auth\AuthError;
 use Delight\Auth\Role;
 use Delight\Auth\EmailNotVerifiedException;
 use Delight\Auth\InvalidEmailException;
 use Delight\Auth\InvalidPasswordException;
 use Delight\Auth\TooManyRequestsException;
 use Delight\Auth\UserAlreadyExistsException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use PDO;
 
 class User
@@ -50,6 +50,8 @@ class User
             die('User already exists');
         } catch (TooManyRequestsException $e) {
             die('Too many requests');
+        } catch (AuthError $e) {
+            echo $e->getMessage();
         }
     }
 
@@ -72,6 +74,7 @@ class User
     public function logout()
     {
         $this->auth->logOut();
+        return true;
     }
 
     public function getAllUsers()
@@ -181,13 +184,10 @@ class User
         catch (\Delight\Auth\UnknownIdException $e) {
             die('Unknown ID');
         }
-//        d($this->auth->getUserId());
-//        die;
-        if($this->auth->getUserId() === $id) {
+
+        if($this->auth->getUserId() === (int)$id) {
             $this->logout();
         }
-
-        return true;
     }
 
     public function isLogged()
