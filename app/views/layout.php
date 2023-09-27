@@ -18,14 +18,8 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <?php if (isset($_SESSION['userId'])): ?>
-                    <a class="nav-link" href="">
-                        <?= 'User is authorized' ?>
-                    </a>
-                <?php elseif (empty($_SESSION['userId'])): ?>
-                    <a class="nav-link" href="/login">Войти</a>
-                <?php endif ?>
-
+                <a class="nav-link" href="">GG</a>
+                <a class="nav-link" href="/login">Войти</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Выйти</a>

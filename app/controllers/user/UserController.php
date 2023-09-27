@@ -16,15 +16,15 @@ class UserController
 
     public function index()
     {
-        echo $this->templates->render('allUsers', ['users' => $this->user->getAllUsers()]);
+        echo $this->templates->render('allUsers', ['users' => $this->user->getAllUsers(), 'isLogged' => $this->user->isLogged(), 'LoggedUserId' => $this->user->getLoggedUserId(), 'isAdmin' => $this->user->isAdmin()]);
     }
 
-    public function showUserCreatePage()
+    public function showCreateUserPage()
     {
-        echo $this->templates->render('userCreate');
+        echo $this->templates->render('createUser');
     }
 
-    public function userCreate()
+    public function createUser()
     {
         $email = $this->request->request->get('email');
         $password = $this->request->request->get('password');
@@ -35,13 +35,12 @@ class UserController
         }
     }
 
-    public function showUserEditPage()
+    public function showEditUserProfilePage($id)
     {
-        d($_GET);
-        echo $this->templates->render('userEdit');
+        echo $this->templates->render('editUserProfile', ['id' => $id]);
     }
 
-    public function userEdit()
+    public function editUserProfile()
     {
         $id = $this->request->request->get('id');
         $userName = $this->request->request->get('userName');
@@ -49,28 +48,62 @@ class UserController
         $phone = $this->request->request->get('phone');
         $jobTitle = $this->request->request->get('jobTitle');
 
-//        if ($this->user->editProfile($id, $userName, $address, $phone, $jobTitle)) {
-//            header('Location: /');
-//        }
+        if ($this->user->editProfile($id, $userName, $address, $phone, $jobTitle)) {
+            header('Location: /');
+        }
     }
 
-    public function userMedia()
+    public function showEditUserSecurityPage($id)
     {
-        echo $this->templates->render('userMedia');
+        echo $this->templates->render('editUserSecurity', ['id' => $id]);
     }
 
-    public function userProfile()
+    public function editUserSecurity()
     {
-        echo $this->templates->render('userProfile');
+        $id = $this->request->request->get('id');
+        $email = $this->request->request->get('email');
+        $password = $this->request->request->get('password');
+        $repeatPassword = $this->request->request->get('repeatPassword');
+
+        if ($this->user->editUserSecurity($id, $email, $password, $repeatPassword)) {
+            header('Location: /');
+        }
+
     }
 
-    public function userSecurity()
+    public function showEditUserStatusPage($id)
     {
-        echo $this->templates->render('userSecurity');
+        echo $this->templates->render('editUserStatus', ['id' => $id]);
     }
 
-    public function userStatus()
+    public function editUserStatus()
     {
-        echo $this->templates->render('userStatus');
+        $id = $this->request->request->get('id');
+        $status = $this->request->request->get('status');
+
+        if ($this->user->editUserStatus($id, $status)) {
+            header('Location: /');
+        }
+    }
+
+    public function showEditUserMediaPage($id)
+    {
+        echo $this->templates->render('editUserMedia', ['id' => $id]);
+    }
+
+    public function editUserMedia()
+    {
+        $id = $this->request->request->get('id');
+
+        if ($this->user->updateUserAvatar($id)) {
+            header('Location: /');
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        if ($this->user->deleteUser($id)) {
+            header('Location: /');
+        }
     }
 }

@@ -1,10 +1,9 @@
 <?php
-
+session_start();
 require '../vendor/autoload.php';
 
 use Aura\SqlQuery\QueryFactory;
 use League\Plates\Engine;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 $builder = new DI\ContainerBuilder();
 $builder->addDefinitions([
@@ -27,10 +26,17 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/login', ['App\controllers\auth\LoginController', 'showLoginPage']);
     $r->addRoute('POST', '/login', ['App\controllers\auth\LoginController', 'login']);
     $r->addRoute('GET', '/logout', ['App\controllers\auth\LogoutController', 'logout']);
-    $r->addRoute('GET', '/userCreate', ['App\controllers\user\UserController', 'showUserCreatePage']);
-    $r->addRoute('POST', '/userCreate', ['App\controllers\user\UserController', 'userCreate']);
-    $r->addRoute('GET', '/userEdit/{id:\d+}', ['App\controllers\user\UserController', 'showUserEditPage']);
-    $r->addRoute('POST', '/userEdit', ['App\controllers\user\UserController', 'userEdit']);
+    $r->addRoute('GET', '/createUser', ['App\controllers\user\UserController', 'showCreateUserPage']);
+    $r->addRoute('POST', '/createUser', ['App\controllers\user\UserController', 'createUser']);
+    $r->addRoute('GET', '/editUserProfile/{id:\d+}', ['App\controllers\user\UserController', 'showEditUserProfilePage']);
+    $r->addRoute('POST', '/editUserProfile', ['App\controllers\user\UserController', 'editUserProfile']);
+    $r->addRoute('GET', '/editUserSecurity/{id:\d+}', ['App\controllers\user\UserController', 'showEditUserSecurityPage']);
+    $r->addRoute('POST', '/editUserSecurity', ['App\controllers\user\UserController', 'editUserSecurity']);
+    $r->addRoute('GET', '/editUserStatus/{id:\d+}', ['App\controllers\user\UserController', 'showEditUserStatusPage']);
+    $r->addRoute('POST', '/editUserStatus', ['App\controllers\user\UserController', 'editUserStatus']);
+    $r->addRoute('GET', '/editUserMedia/{id:\d+}', ['App\controllers\user\UserController', 'showEditUserMediaPage']);
+    $r->addRoute('POST', '/editUserMedia', ['App\controllers\user\UserController', 'editUserMedia']);
+    $r->addRoute('GET', '/deleteUser/{id:\d+}', ['App\controllers\user\UserController', 'deleteUser']);
 });
 
 // Fetch method and URI from somewhere
